@@ -1,0 +1,54 @@
+version: "3.8"
+services:
+  server:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ./:/di-example-go
+    environment:
+      DATABASE_HOST: postgres
+    ports:
+      - 8000:8000
+    depends_on:
+      - postgres
+    networks:
+      - di-example-go
+
+  postgres:
+    image: postgres:14.2-alpine
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: blockfint@99
+      POSTGRES_DB: di-example-go
+      TZ: Asia/Bangkok
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    # ports:
+    #   - 5432:5432
+    restart: always
+    networks:
+      - di-example-go
+
+  postgres-test:
+    image: postgres:14.2-alpine
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: blockfint@99
+      POSTGRES_DB: di-example-go-test
+      TZ: Asia/Bangkok
+    volumes:
+      - postgres-test-data:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+    restart: always
+    networks:
+      - di-example-go
+
+volumes:
+  postgres-data:
+  postgres-test-data:
+
+networks:
+  di-example-go:
+    name: di-example-go

@@ -1,0 +1,23 @@
+version: "3.8"
+services:
+  postgres-test:
+    image: postgres:14.2-alpine
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: blockfint@99
+      POSTGRES_DB: di-example-go-test
+      TZ: Asia/Bangkok
+    volumes:
+      - postgres-test-data:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+    restart: always
+    networks:
+      - di-example-go
+
+volumes:
+  postgres-test-data:
+
+networks:
+  di-example-go:
+    name: di-example-go

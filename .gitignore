@@ -1,0 +1,8 @@
+# log
+server*.log
+
+# misc
+.DS_Store
+
+# mock
+mock_data

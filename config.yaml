@@ -1,0 +1,21 @@
+# --- use this config to test with local db ---
+HTTP_SERVER:
+  PORT: 8000
+  BASE_URL: http://localhost:8000/api/v1
+
+DATABASE:
+  DRIVER: postgres
+  HOST: localhost
+  PORT: 5432
+  USERNAME: postgres
+  PASSWORD: blockfint@99
+  DB_NAME: di-example-go
+
+LOGGER:
+  LEVEL: info
+  ENABLE_FILE: true
+  JSON: false
+  MAX_SIZE_IN_MB: 1
+  MAX_BACKUP_FILES: 2
+  MAX_DAY_TO_KEEP_BACKUP_FILES: 30
+  COMPRESS_BACKUP_FILE: false
